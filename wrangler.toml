@@ -1,0 +1,15 @@
+name = "jobber-proxy"
+main = "./src/index.ts"
+compatibility_flags = [ "nodejs_compat" ]
+compatibility_date = "2025-01-20"
+account_id = "a028d2b8c5d46dde906a4bb5746bd48d"
+route = { pattern = "jobberproxy.sprinklerfix.com/*", zone_id = "jobberproxy.sprinklerfix.com/*" }
+
+[vars]
+JOBBER_API_URL="https://api.getjobber.com/api/graphql"
+JOBBER_API_VERSION="2025-01-20"
+JOBBER_PROXY_URL="https://jobberproxy.sprinklerfix.com"
+
+[[kv_namespaces]]
+binding = "JOBBER_PROXY_KV"
+id = "b4e0c0ceb8654cd9af87a05711ed7f72"
