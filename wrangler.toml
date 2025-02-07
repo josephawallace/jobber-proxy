@@ -9,7 +9,6 @@ route = { pattern = "jobberproxy.sprinklerfix.com", custom_domain = true }
 JOBBER_API_URL="https://api.getjobber.com"
 JOBBER_API_VERSION="2025-01-20"
 JOBBER_PROXY_URL="https://jobberproxy.sprinklerfix.com"
-YARN_ENABLE_IMMUTABLE_INSTALLS=false
 
 [observability.logs]
 enabled = true
