@@ -14,3 +14,4 @@ node_modules/
 *.log
 *.wrangler/
 .DS_Store
+.yarn/
