@@ -16,7 +16,7 @@ Further documentation for Wrangler can be found [here](https://developers.cloudf
 
 ## Configuration
 
-Fill in your `account_id`, `zone_id`, and `route` in [`wrangler.toml`](https://github.com/cloudflare/custom-headers-example/blob/master/wrangler.toml). 
+Fill in your `account_id`, `zone_id`, and `route` in [`wrangler.toml`](https://github.com/cloudflare/custom-headers-example/blob/master/wrangler.toml).
 
 When your `wrangler.toml` is configured, you can publish your Workers function using `wrangler publish`:
 
