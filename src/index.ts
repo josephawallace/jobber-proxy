@@ -40,10 +40,6 @@ const JOBBER_PROXY_SCOPE = [
 
 export default {
   async fetch(req: Request, env: Env, _: unknown): Promise<Response> {
-    if (!checkBearer(req, env)) {
-      return new Response("Unauthorized", { status: 401 });
-    }
-
     const url = new URL(req.url);
     try {
       switch (url.pathname) {
@@ -52,8 +48,14 @@ export default {
         case "/callback":
           return await callback(req, env);
         case "/authorize":
+          if (!checkBearer(req, env)) {
+            return new Response("Unauthorized", { status: 401 });
+          }
           return await authorize(env);
         case "/graphql":
+          if (!checkBearer(req, env)) {
+            return new Response("Unauthorized", { status: 401 });
+          }
           return await proxy(req, env);
         default:
           return new Response("Not Found", { status: 404 });
