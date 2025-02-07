@@ -4,6 +4,7 @@ interface Env {
   JOBBER_API_CLIENT_ID: string;
   JOBBER_API_CLIENT_SECRET: string;
   JOBBER_PROXY_URL: string;
+  JOBBER_PROXY_API_KEY: string;
   JOBBER_PROXY_KV: KVNamespace;
 }
 
@@ -39,6 +40,10 @@ const JOBBER_PROXY_SCOPE = [
 
 export default {
   async fetch(req: Request, env: Env, _: unknown): Promise<Response> {
+    if (!checkBearer(req, env)) {
+      return new Response("Unauthorized", { status: 401 });
+    }
+
     const url = new URL(req.url);
     try {
       switch (url.pathname) {
@@ -90,6 +95,13 @@ async function proxy(req: Request, env: Env): Promise<Response> {
 
   // proxy the request to jobber, now with the needed headers
   return fetch(jobberRequest);
+}
+
+function checkBearer(req: Request, env: Env): boolean {
+  let apiKey = req.headers.get("Authorization") || ""
+  apiKey = apiKey.replace("Bearer ", "")
+  console.log(apiKey)
+  return apiKey === env.JOBBER_PROXY_API_KEY;
 }
 
 async function authorize(env: Env): Promise<Response> {
